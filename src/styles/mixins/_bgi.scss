@@ -1,0 +1,11 @@
+@use '../vars' as *;
+
+@mixin bgi($device) {
+  @if ($device =='pc') {
+    background-image: var(--pcbg);
+  }
+
+  @if ($device =='sp') {
+    background-image: var(--spbg);
+  }
+}

@@ -1,0 +1,23 @@
+Todo:
+  ☐ FTP機能の実装
+  ☐ 納品機能の実装
+    ☐ 差分抽出
+    ☐ 納品フォルダ
+      ☐ ファイル名リスト作成
+      ☐ 画像とHTMLフォルダの分離
+  ☐ View Transitionsのアニメーション設定
+  ☐ biomeの設定
+  ✔ tua-body-scroll-lockの導入 @done(24-01-19 19:20)
+    https://www.npmjs.com/package/tua-body-scroll-lock
+  ✔ vite-plugin-sass-glob-importの導入 @done(24-01-19 19:14)
+    https://github.com/cmalven/vite-plugin-sass-glob-import
+    https://github.com/htmlonelove/liga-astro-template
+    https://github.com/ryotashbsk/Vite-WordPress/blob/023fb68455ac64a3c63fbeb92344aaff2d91c6d3/src/styles/import/_mixin.scss
+  ✔ Astroでbuild.format: 'file'でもindex.htmlを生成するインテグレーション @done(24-01-19 20:38)
+    https://qiita.com/eno2kn/items/7453b074d61d7f27831b
+  ☐ modifireをdata-属性に変更
+  ☐ line-heightのハーフ・レディングを打ち消す
+    https://www.tak-dcxi.com/article/use-line-height-trim-as-css-variable/
+  ☐ 諸々リセット調整
+    https://www.tak-dcxi.com/article/html-css-techniques-to-improve-usability-and-accessibility-with-minimal-code
+

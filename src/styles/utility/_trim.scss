@@ -1,0 +1,22 @@
+@use '../import' as *;
+
+.u_trim {
+
+  // &::before,
+  // &::after {
+  //   content: '';
+  //   display: block flow;
+  //   inline-size: 0;
+  //   block-size: 1px;
+  // }
+
+  // &::before {
+  //   margin-block-end: var(--leading-trim);
+  // }
+
+  // &::after {
+  //   margin-block-start: var(--leading-trim);
+  // }
+
+  margin-block: calc((1em - 1lh) / 2);
+}

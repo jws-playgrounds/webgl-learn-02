@@ -1,0 +1,41 @@
+@use 'sass:math';
+@use '../vars' as *;
+
+// @function vw($num, $width: $sp-design-width) {
+//   @return (math.div(100vw * $num, $width));
+// }
+
+@function vw($num) {
+  @return (calc((var(--vpw) * #{$num}px) / var(--spdw)));
+}
+
+// @function vwPC($num, $width: $pc-design-width) {
+//   @return (math.div(100vw * $num, $width));
+// }
+
+@function vwPC($num) {
+  @return calc((var(--vpw) * #{$num}px) / var(--pcdw));
+}
+
+@function calcPer($num, $width: $sp-design-width) {
+  @return (math.div(1% * $num, $width * 100));
+}
+
+@function vwPerPC($num, $width: $pc-design-width) {
+  @return (math.div(1% * $num, $width * 100));
+}
+
+@function get_fzvw($size, $viewport: $sp-design-width) {
+  $rate: math.div(100, $viewport);
+  @return $rate * $size * 1vw;
+}
+
+@function pc($num) {
+  @if($num>0) {
+    @return min(#{vwPC($num)}, #{$num}px);
+  }
+
+  @else {
+    @return max(#{vwPC($num)}, #{$num}px);
+  }
+}

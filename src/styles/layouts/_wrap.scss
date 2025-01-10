@@ -1,0 +1,7 @@
+@use '../import' as *;
+
+.l_wrap {
+  position: relative;
+  background-color: #000;
+  min-height: calc(var(--vph) * 1px);
+}

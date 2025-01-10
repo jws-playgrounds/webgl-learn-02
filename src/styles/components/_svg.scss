@@ -1,0 +1,59 @@
+@use '../import' as *;
+
+.c_svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  &[data-type="vw"] {
+    display: block;
+    width: min(calc((var(--vpw) * var(--pcw)) / var(--pcdw)), var(--pcw));
+    height: min(calc((var(--vpw) * var(--pch)) / var(--pcdw)), var(--pch));
+    aspect-ratio: var(--pcw) / var(--pch);
+
+    @include media('tab') {
+      width: calc((var(--vpw) * var(--spw)) / var(--spdw));
+      height: calc((var(--vpw) * var(--sph)) / var(--spdw));
+      aspect-ratio: var(--spw) / var(--sph);
+    }
+  }
+
+  &[data-type="pc"] {
+    display: block;
+    width: calc((var(--vpw) * var(--pcw)) / var(--pcdw));
+    height: calc((var(--vpw) * var(--pch)) / var(--pcdw));
+    aspect-ratio: var(--pcw) / var(--pch);
+
+    @include media('tab') {
+      width: calc((var(--vpw) * var(--pcw)) / var(--pcdw));
+      height: calc((var(--vpw) * var(--pch)) / var(--pcdw));
+      aspect-ratio: var(--spw) / var(--sph);
+    }
+  }
+}
+
+.c_svg-vw {
+  display: block;
+  width: min(calc((var(--vpw) * var(--pcw)) / var(--pcdw)), var(--pcw));
+  height: min(calc((var(--vpw) * var(--pch)) / var(--pcdw)), var(--pch));
+  aspect-ratio: var(--pcw) / var(--pch);
+
+  @include media('tab') {
+    width: calc((var(--vpw) * var(--spw)) / var(--spdw));
+    height: calc((var(--vpw) * var(--sph)) / var(--spdw));
+    aspect-ratio: var(--spw) / var(--sph);
+  }
+}
+
+.c_svg-pcvw {
+  display: block;
+  width: calc((var(--vpw) * var(--pcw)) / var(--pcdw));
+  height: calc((var(--vpw) * var(--pch)) / var(--pcdw));
+  aspect-ratio: var(--pcw) / var(--pch);
+
+  @include media('tab') {
+    width: calc((var(--vpw) * var(--pcw)) / var(--pcdw));
+    height: calc((var(--vpw) * var(--pch)) / var(--pcdw));
+    aspect-ratio: var(--spw) / var(--sph);
+  }
+}

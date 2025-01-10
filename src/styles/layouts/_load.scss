@@ -1,0 +1,12 @@
+@use '../import' as *;
+
+.l_load {
+  background-color: #fff;
+  position: fixed;
+  width: 100svw;
+  height: 100lvh;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+  overflow: hidden;
+}

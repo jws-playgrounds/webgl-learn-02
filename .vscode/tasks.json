@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Create File List and Zip Final Directory",
+      "type": "shell",
+      "command": "$dateDir = (Get-Date -Format MMdd); New-Item -ItemType Directory -Path ../納品/$dateDir -Force; cd ../納品/$dateDir; Get-ChildItem -Recurse -File | Where-Object { $_.Name -ne 'file_list.txt' } | Select-Object -ExpandProperty FullName | Set-Content -Path file_list.txt; cd ../納品; Compress-Archive -Path $dateDir -DestinationPath $dateDir.zip"
+    },
+    {
+      "label": "Prepare and Unzip in Delivery Directory",
+      "type": "shell",
+      "command": "New-Item -ItemType Directory -Path ../納品/$(Get-Date -Format MMdd) -Force; Expand-Archive -Path ../納品/diff.zip -DestinationPath ../納品/$(Get-Date -Format MMdd); Remove-Item -Path ../納品/diff.zip"
+    },
+    {
+      "label": "Organize Files",
+      "type": "shell",
+      "command": "cd ../納品/$(Get-Date -Format MMdd); New-Item -ItemType Directory -Name 画像 -Force; if (Test-Path 'HTML/assets/images') { Move-Item -Path 'HTML/assets/images/*' -Destination 画像 -Force }; if (Test-Path 'HTML/*/assets/images') { Move-Item -Path 'HTML/*/assets/images/*' -Destination 画像 -Force }"
+    },
+    {
+      "label": "Create File List and Zip Final Directory",
+      "type": "shell",
+      "command": "cd ../納品/$(Get-Date -Format MMdd); Get-ChildItem -Recurse -File | Where-Object { $_.Name -ne 'file_list.txt' } | Select-Object -ExpandProperty FullName | Set-Content -Path file_list.txt; cd ../納品; Compress-Archive -Path $(Get-Date -Format MMdd) -DestinationPath $(Get-Date -Format MMdd).zip"
+    },
+    {
+      "label": "Complete Delivery Process",
+      "type": "shell",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Create Diff Archive",
+        "Prepare and Unzip in Delivery Directory",
+        "Organize Files",
+        "Create File List and Zip Final Directory"
+      ]
+    }
+  ]
+}

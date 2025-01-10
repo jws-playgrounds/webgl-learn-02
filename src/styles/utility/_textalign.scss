@@ -1,0 +1,22 @@
+@use 'sass:math';
+@use '../import' as *;
+
+.u_tar {
+  text-align: right;
+}
+
+.u_tac {
+  text-align: center;
+}
+
+.u_tal {
+  text-align: left;
+}
+
+.u_tac-tal {
+  text-align: center;
+
+  @include media('tab') {
+    text-align: left;
+  }
+}

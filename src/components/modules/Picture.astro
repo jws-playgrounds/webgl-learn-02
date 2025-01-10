@@ -1,0 +1,131 @@
+---
+import { getEnv, sitePath, splitAndJoinSrc } from '@utils/utils';
+import ImageSize from 'image-size';
+
+export interface Props {
+  src: string;
+  sp?: boolean;
+  alt: string;
+  parent?: string;
+  lazy?: boolean;
+  isVw?: boolean;
+  isRetina?: boolean;
+  isJpg?: boolean;
+}
+
+const {
+  src,
+  sp = true,
+  alt,
+  parent,
+  lazy = true,
+  isVw = true,
+  isRetina = true,
+  isJpg = false,
+} = Astro.props;
+
+const assetsPath = `${getEnv('PUBLIC_IMAGE_PATH')}`;
+
+const { path: pcPath, filename: pcFilename } = splitAndJoinSrc(src);
+
+const pcSrc = `${sitePath}${assetsPath}${pcPath}${pcFilename}`;
+const spSrc = sp ? `${sitePath}${assetsPath}${pcPath}sp/${pcFilename}` : null;
+
+const getImageSize = (path, filename, isSp, retina) => {
+  const size = ImageSize(
+    `public/${assetsPath}/${path}/${isSp ? 'sp/' : ''}${filename}.webp`,
+  );
+  return {
+    width: Math.round(retina ? size.width / 2 : size.width),
+    height: Math.round(retina ? size.height / 2 : size.height),
+  };
+};
+
+const pcSize = getImageSize(pcPath, pcFilename, false, isRetina);
+const spSize = sp ? getImageSize(pcPath, pcFilename, true, true) : null;
+
+const pcImagePath = (ext) => `${pcSrc}.${ext}`;
+const spImagePath = (ext) => `${spSrc}.${ext}`;
+
+const media = {
+  media: sp ? `(min-width:${import.meta.env.PUBLIC_BREAK_POINT}px)` : null,
+};
+
+const style = {
+  style: isVw
+    ? `--pcw:${pcSize.width}px;--pch:${pcSize.height}px;${
+        sp ? `--spw:${spSize.width}px;--sph:${spSize.height}px;` : ''
+      }`
+    : null,
+};
+
+const type = () => {
+  if (!isVw) return;
+  if (isVw) {
+    return 'vw';
+  }
+  if (isVw && sp) {
+    return 'sp';
+  }
+  if (!sp) {
+    return 'pc';
+  }
+};
+---
+
+<picture
+  class={`${parent ? `${parent} ` : ''}c_picture`}
+  data-type={type()}
+  {...style}
+>
+  <source
+    type='image/avif'
+    srcset={pcImagePath('avif')}
+    width={pcSize.width}
+    height={pcSize.height}
+    {...media}
+  />
+  <source
+    type='image/webp'
+    srcset={pcImagePath('webp')}
+    width={pcSize.width}
+    height={pcSize.height}
+    {...media}
+  />
+  {
+    () => {
+      if (sp) {
+        return (
+          <>
+            <source
+              type='image/avif'
+              srcset={spImagePath('avif')}
+              width={spSize.width}
+              height={spSize.height}
+              media={`(max-width:${import.meta.env.PUBLIC_BREAK_POINT - 1}px)`}
+            />
+            <source
+              type='image/webp'
+              srcset={spImagePath('webp')}
+              width={spSize.width}
+              height={spSize.height}
+              media={`(max-width:${import.meta.env.PUBLIC_BREAK_POINT - 1}px)`}
+            />
+          </>
+        );
+      }
+    }
+  }
+  <Fragment
+    set:html={`
+    `}
+  />
+  <img
+    src={pcImagePath('webp')}
+    loading={lazy ? 'lazy' : 'eager'}
+    fetchpriority={lazy ? null : 'high'}
+    width={pcSize.width}
+    height={pcSize.height}
+    alt={alt}
+  />
+</picture>

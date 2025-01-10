@@ -1,0 +1,43 @@
+@use '../import' as *;
+
+.c_picture {
+  display: block;
+
+  &[data-type="vw"] {
+    width: min(calc((var(--vpw) * var(--pcw)) / var(--pcdw)), var(--pcw));
+    height: min(calc((var(--vpw) * var(--pch)) / var(--pcdw)), var(--pch));
+    aspect-ratio: var(--pcw) / var(--pch);
+
+    @include media('tab') {
+      width: calc((var(--vpw) * var(--spw)) / var(--spdw));
+      height: calc((var(--vpw) * var(--sph)) / var(--spdw));
+      aspect-ratio: var(--spw) / var(--sph);
+    }
+  }
+
+  &[data-type="pc"] {
+    width: min(calc((var(--vpw) * var(--pcw)) / var(--pcdw)), var(--pcw));
+    height: min(calc((var(--vpw) * var(--pch)) / var(--pcdw)), var(--pch));
+    aspect-ratio: var(--pcw) / var(--pch);
+
+    @include media('tab') {
+      width: calc((var(--vpw) * var(--pcw)) / var(--pcdw));
+      height: calc((var(--vpw) * var(--pch)) / var(--pcdw));
+      aspect-ratio: var(--pcw) / var(--pch);
+    }
+  }
+
+  &[data-type="sp"] {
+    @include media('tab') {
+      width: calc((var(--vpw) * var(--spw)) / var(--spdw));
+      height: calc((var(--vpw) * var(--sph)) / var(--spdw));
+      aspect-ratio: var(--spw) / var(--sph);
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

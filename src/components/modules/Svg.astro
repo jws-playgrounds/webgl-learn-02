@@ -1,0 +1,74 @@
+---
+import { getEnv, sitePath } from '@utils/utils';
+
+export interface Props {
+  svgId: string;
+  pcw: number;
+  pch: number;
+  alt?: string;
+  isVw?: boolean;
+  spw?: number;
+  sph?: number;
+  isSp?: boolean;
+}
+
+const {
+  svgId,
+  pcw,
+  pch,
+  alt,
+  isVw = true,
+  spw,
+  sph,
+  isSp = true,
+} = Astro.props;
+
+const isAlt = alt !== undefined;
+
+const assetsPath = `${getEnv('PUBLIC_SITE_PATH')}assets/svg/`;
+
+const style = !isSp
+  ? {
+      style: `${`--pcw:${pcw}px;--pch:${pch}px;`}`,
+    }
+  : isVw
+    ? {
+        style: `${`--pcw:${pcw}px;--pch:${pch}px;--spw:${spw}px;--sph:${sph}px;`}`,
+      }
+    : '';
+
+const type = () => {
+  if (isVw && isSp) {
+    return 'vw';
+  }
+  if (isVw && !isSp) {
+    return 'pc';
+  }
+};
+---
+
+{
+  isAlt ? (
+    <svg
+      class={'c_svg'}
+      width={String(pcw)}
+      height={String(pch)}
+      role='img'
+      aria-label={alt}
+      data-type={type()}
+      {...style}
+    >
+      <use href={`${assetsPath}${svgId}.svg#${svgId}`} />
+    </svg>
+  ) : (
+    <svg
+      class={'c_svg'}
+      width={String(pcw)}
+      height={String(pch)}
+      data-type={type()}
+      {...style}
+    >
+      <use href={`${assetsPath}${svgId}.svg#${svgId}`} />
+    </svg>
+  )
+}

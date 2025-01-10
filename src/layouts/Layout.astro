@@ -1,0 +1,46 @@
+---
+import metadata from '@data/metadata';
+import { getEnv } from '@utils/utils';
+import Footer from './components/Footer.astro';
+import GABody from './components/GABody.astro';
+import GAHead from './components/GAHead.astro';
+import GoogleFont from './components/GoogleFont.astro';
+import Head from './components/Head.astro';
+import Header from './components/Header.astro';
+
+export interface Props {
+  pageId: string;
+  title: string;
+  gh: string;
+}
+const { pageId, gh, title } = Astro.props;
+
+const style = {
+  style: `--pcdw: ${getEnv('PUBLIC_PC_DESIGN_SIZE')}; --spdw: ${getEnv('PUBLIC_SP_DESIGN_SIZE')}; --bp: ${getEnv('PUBLIC_BREAK_POINT')};`,
+};
+---
+
+<!doctype html>
+<html lang={metadata[pageId].lang} {...style} data-overlayscrollbars-initialize>
+  <head>
+    <meta name='robots' content='noindex,nofollow' />
+    <Head title={title} pageId={pageId} />
+    <GoogleFont
+      font='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap'
+    />
+    <script>
+      import '@ts/_entry/main';
+      import '@styles/main.scss';
+    </script>
+  </head>
+  <body class='js-scroll' data-overlayscrollbars-initialize>
+    <GABody />
+    <div class='l_wrap'>
+      <Header gh={gh} />
+      <main class='l_main'>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

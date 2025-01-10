@@ -1,0 +1,49 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
+  "files": { "ignore": ["node_modules/**", "dist/**"], "ignoreUnknown": true },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto",
+    "ignore": [
+      "package-lock.json",
+      "pnpm-lock.yaml",
+      "**/dist/",
+      "**/.output/",
+      "**/node_modules/",
+      "**/public/"
+    ],
+    "include": ["*.astro", "*.js", "*.ts"]
+  },
+  "organizeImports": { "enabled": true },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": false,
+      "correctness": { "noUnusedVariables": "off" }
+    },
+    "ignore": ["*.d.ts", "node_modules", "dist", "GAHead.astro"]
+  },
+  "javascript": {
+    "formatter": {
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "bracketSameLine": false,
+      "quoteStyle": "single",
+      "attributePosition": "auto"
+    },
+    "globals": ["Astro", "astroHTML"]
+  },
+  "json": {
+    "parser": { "allowComments": true, "allowTrailingCommas": true },
+    "formatter": { "trailingCommas": "none" }
+  },
+  "overrides": [{ "include": ["*.astro"] }, { "include": ["*.ts", "*.tsx"] }]
+}

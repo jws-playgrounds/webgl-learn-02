@@ -1,0 +1,179 @@
+:where([hidden]:not([hidden='until-found'])) {
+  display: none !important;
+}
+
+:where(html:has(dialog:modal[open])) {
+  overflow: clip;
+}
+
+:where(body) {
+  line-height: 1;
+  font-optical-sizing: auto;
+  -webkit-text-size-adjust: 100%;
+  font-size: 10px;
+}
+
+:where(button) {
+  all: unset;
+}
+
+:where(input, button, textarea, select, optgroup, option) {
+  -webkit-appearance: none;
+  appearance: none;
+  vertical-align: middle;
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  text-align: inherit;
+  text-transform: inherit;
+}
+
+:where(textarea) {
+  resize: vertical;
+  resize: block;
+}
+
+:where(fieldset, legend) {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+:where([type="number"]::-webkit-inner-spin-button, [type="number"]::-webkit-outer-spin-button) {
+  height: auto;
+}
+
+:where([type="search"]) {
+  outline-offset: -2px;
+}
+
+:where([type="search"]::-webkit-search-decoration) {
+  -webkit-appearance: none;
+}
+
+:where(::-webkit-file-upload-button) {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+:where([type="number"]) {
+  -moz-appearance: textfield;
+}
+
+:where(button, label, select, summary, [role='button'], [role='option']) {
+  cursor: pointer;
+}
+
+:where(:disabled) {
+  cursor: not-allowed;
+}
+
+:where(label:has(> input:disabled), label:has(+ input:disabled)) {
+  cursor: not-allowed;
+}
+
+:where(a) {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+:where(ul, ol) {
+  list-style: none;
+}
+
+:where(img, svg, video, canvas, audio, iframe, embed, object) {
+  display: block;
+}
+
+:where(img, picture, svg, video) {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+:where(p, h1, h2, h3, h4, h5, h6) {
+  overflow-wrap: break-word;
+}
+
+:where(i, em, strong, address, small, b, input) {
+  font-style: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+:where(dd) {
+  margin-left: 0;
+}
+
+:where(hr) {
+  border: none;
+  border-block-start: 1px solid;
+  color: inherit;
+  block-size: 0;
+  overflow: visible;
+}
+
+:where(dialog) {
+  border: none;
+  background: none;
+  inset: unset;
+  max-width: unset;
+  max-height: unset;
+}
+
+:where(dialog:not([open])) {
+  display: none !important;
+}
+
+:where(:focus-visible) {
+  outline: 3px solid CanvasText;
+  box-shadow: 0 0 0 5px Canvas;
+  outline-offset: 1px;
+}
+
+:where(:focus-visible, :target) {
+  scroll-margin-block: 8vh;
+}
+
+:where(.visually-hidden:not(:focus-within, :active)) {
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+:where(table) {
+  border-color: inherit;
+  border-collapse: collapse;
+}
+
+:where(caption) {
+  text-align: left;
+}
+
+:where(td, th) {
+  vertical-align: top;
+  padding: 0;
+}
+
+:where(th) {
+  text-align: left;
+  font-weight: bold;
+}
+
+:where(*,
+  *::before,
+  *::after) {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+  min-width: 0;
+}

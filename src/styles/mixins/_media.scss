@@ -1,0 +1,40 @@
+@use '../vars' as *;
+@use 'sass:map';
+
+// @mixin tab {
+//   @media screen and (max-width: #{map-get($breakpoints,tab)}) {
+//     @content;
+//   }
+// }
+
+@mixin media($bp, $max: true) {
+  @if($max ==true) {
+    $mq : map.get($breakpoints, $bp) - 1;
+
+    @media (max-width: $mq) {
+      @content;
+    }
+  }
+
+  @else {
+    $mq : map.get($breakpoints, $bp);
+
+    @media (min-width: $mq) {
+      @content;
+    }
+  }
+}
+
+@mixin hover {
+  // @media (hover: hover) {
+  //   &:where(:any-link, :enabled, summary):hover {
+  //     @content;
+  //   }
+  // }
+
+  @media (any-hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}

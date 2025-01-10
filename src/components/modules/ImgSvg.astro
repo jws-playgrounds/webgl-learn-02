@@ -1,0 +1,61 @@
+---
+import { getEnv, sitePath } from '@utils/utils';
+
+export interface Props {
+  src: string;
+  pcw: number;
+  pch: number;
+  alt?: string;
+  isVw?: boolean;
+  ispcVw?: boolean;
+  spw?: number;
+  sph?: number;
+  lazy?: boolean;
+}
+
+const {
+  src,
+  pcw,
+  pch,
+  alt = '',
+  isVw = true,
+  ispcVw = false,
+  spw,
+  sph,
+  lazy = true,
+} = Astro.props;
+
+const style = isVw
+  ? `${`--pcw:${pcw}px;--pch:${pch}px;--spw:${spw}px;--sph:${sph}px;`}`
+  : '';
+
+const size = isVw
+  ? {
+      width: String(Math.round(pcw)),
+      height: String(Math.round(pch)),
+    }
+  : null;
+
+const assetsPath = `${getEnv('PUBLIC_SITE_PATH')}assets/svg/`;
+
+const type = () => {
+  if (isVw && ispcVw) {
+    return 'vw';
+  }
+  if (isVw && !ispcVw) {
+    return 'pc';
+  }
+};
+---
+
+<span class={`c_imgSvg`} data-type={type()} {style}>
+  <img
+    src={`${assetsPath}${src}.svg`}
+    alt={alt}
+    width={String(Math.round(pcw))}
+    height={String(Math.round(pch))}
+    loading={lazy ? 'lazy' : 'eager'}
+    fetchpriority={lazy ? 'auto' : 'high'}
+    decoding='auto'
+  />
+</span>

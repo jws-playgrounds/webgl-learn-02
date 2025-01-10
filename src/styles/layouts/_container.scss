@@ -1,0 +1,34 @@
+@use '../import' as *;
+
+.l_container {
+  width: pc(1400);
+  padding: 0 pc(100);
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: relative;
+
+  @include media('tab') {
+    width: vw(375);
+    padding: 0 vw(15);
+  }
+
+  &-small {
+    width: pc(1000);
+
+    @include media('tab') {
+      width: vw(375);
+      padding: 0 vw(15);
+    }
+  }
+}
+
+// https://codepen.io/dadada-dadada/pen/JjOXqPZ
+
+.l_container_exleft {
+  margin-left: calc(50% - (var(--vpw)*0.5*1px));
+}
+
+.l_container_exright {
+  margin-right: calc(50% - (var(--vpw)*0.5*1px));
+}

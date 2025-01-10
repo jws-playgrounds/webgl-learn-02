@@ -1,0 +1,20 @@
+@use '../import' as *;
+
+.l_header {
+  display: flex;
+  gap: pc(30);
+  position: absolute;
+  top: pc(50);
+  left: pc(50);
+  mix-blend-mode: difference;
+  z-index: 10;
+
+  @include media('tab') {
+    top: vw(30);
+    left: vw(27.5);
+  }
+
+  svg {
+    fill: #fff;
+  }
+}

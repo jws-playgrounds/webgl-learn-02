@@ -1,0 +1,7 @@
+// mixinはglobできない。
+@forward './mixins/bgi';
+@forward './mixins/lh';
+@forward './mixins/media';
+@forward './mixins/textCrop';
+@forward './mixins/transition';
+@forward './mixins/vw';

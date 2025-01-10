@@ -1,0 +1,49 @@
+@use '../import' as *;
+
+.u_flash {
+  @include hover {
+    .u_flash_item {
+      animation: flash 0.2s $easeInOutExpo 1;
+    }
+  }
+
+  .u_flash_item {
+    will-change: opacity;
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+
+  16.67% {
+    /* After 0.05s */
+    opacity: 0;
+  }
+
+  33.33% {
+    /* After 0.10s */
+    opacity: 1;
+  }
+
+  50% {
+    /* After 0.15s */
+    opacity: 1;
+  }
+
+  66.67% {
+    /* After 0.20s */
+    opacity: 0;
+  }
+
+  83.33% {
+    /* After 0.25s */
+    opacity: 1;
+  }
+
+  100% {
+    /* After 0.30s */
+    opacity: 1;
+  }
+}
